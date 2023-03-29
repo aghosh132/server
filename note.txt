@@ -1,0 +1,122 @@
+Server Creation 
+---------------
+
+
+1- npm init 
+2- install express      npm i express
+
+steps
+------
+
+
+1-import express
+2- create app using express
+3- setting port to run the app(3000)
+
+
+register // post
+login // get 
+deposit // patch
+withdrowal // patch
+transaction // get
+delete // delete
+
+
+
+
+JWT(json web token)
+-------------------
+
+-user authentication
+-jsonwebtoken - library used to generate tokens
+-sign() - method to generate token
+-verify() - method used to token Verification
+
+
+
+
+Token Verification
+-----------------
+middlewares
+---------
+--its a function with 3 arguments   (req ,res, next)
+--have the capacity to control requests in node 
+-two types of middlewares
+
+  -1 application specific middlewares - it happens before all the http methods
+-2  router specific middlewares  - can apply only to the specific requests 
+
+
+next() - method used inside middleware to continue node execution
+
+
+
+
+
+
+MongoDB
+------
+
+
+1- to see the databases
+        ----- show dbs
+
+2- to open a db 
+        - use (databasename)
+
+3- to list collections
+        - show collections
+
+4- to show the datas inside a collection
+        -db.(collectioName).find()
+
+5- to show single data inside a collection 
+       - db.(collectioName).findOne({key:value})
+
+  example: db.users.findone({acno:1000})  -present  - fulldata of that object
+                                      -not present  - null
+
+6- insert new data
+         -db.(collectioName).insertOne({keys:values})
+
+7-to find datas using a particular condition
+        - db.(collectioName).find({condition})
+                - condition create using query selection operaters
+
+        - to access datas which have 40000 greater balance 
+          db.users.find({balance:(gt:40000)})
+
+8- delete a data from collection
+       -  db.(collectioName).deleteOne({key:value})     - delete count=0
+
+
+9- update 
+
+         -db.(collectioName).updateOne({oldkey:oldvalue},{$set:{newkey:newvalue}})
+example :  -  db.users.updateOne({username:anu},{$set:{username:anu v}})
+
+
+
+db-server integration(mdb node connection)
+-------------------------------27017 3000
+
+mongoose - library used to integrate mongodb and server
+
+         - npm i mongoose
+
+connect() - method used to create connection string
+
+model()   - method used to create model
+
+
+
+
+steps
+----
+
+1- import mongoose
+2- connection string Creation
+3- model creation for collection(model name is singular form of collection name)
+
+
+
