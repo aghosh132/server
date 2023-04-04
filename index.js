@@ -1,12 +1,14 @@
 const express=require("express")
 
-
+const cors=require("cors")
 const ds =require('./service/dataService')
 
 const jwt=require("jsonwebtoken")
 
 const app=express()
 
+//integrate app with frontend
+app.use(cors({origin:'http://localhost:4200'}))
 
 app.use(express.json())
 
@@ -36,31 +38,41 @@ res.status(422).json({
 
 app.post("/register",(req,res)=>{
 
-  const result=  ds.register(req.body.acno,req.body.uname,req.body.psw);
-  res.status(result.statusCode).json(result)})
+ ds.register(req.body.acno,req.body.uname,req.body.psw).then(result=>{
+  res.status(result.statusCode).json(result)})})
 //login
 
   app.post("/login",(req,res)=>{
 
-    const result=  ds.login(req.body.acno,req.body.psw);
-    res.status(result.statusCode).json(result)
-  })
+     ds.login(req.body.acno,req.body.psw).then(result=>{
+    res.status(result.statusCode).json(result)})})
 
   app.post("/deposit",jwtMiddleware,(req,res)=>{
 
-    const result=  ds.deposit(req.body.acno,req.body.psw,req.body.amnt);
-    res.status(result.statusCode).json(result)
-  })
+     ds.deposit(req.body.acno,req.body.psw,req.body.amnt).then(result=>{
+    res.status(result.statusCode).json(result)})})
+
+
+
   app.post("/withdrow",jwtMiddleware,(req,res)=>{
 
-    const result=  ds.withdrow(req.body.acno,req.body.psw,req.body.amnt);
+     ds.withdrow(req.body.acno,req.body.psw,req.body.amnt).then(result=>{
     res.status(result.statusCode).json(result)
-  })
+  })})
 
-  app.get("/transaction",jwtMiddleware,(req,res)=>{
+  app.post("/transaction",jwtMiddleware,(req,res)=>{
 
-    const result=  ds.getTransaction(req.body.acno);
+     ds.getTransaction(req.body.acno).then(result=>{
     res.status(result.statusCode).json(result)
+  })})
+
+  app.delete("/delete/:acno",jwtMiddleware,(req,res)=>{
+
+ds.deleteAcc(req.params.acno).then(result=>{
+  res.status(res.statusCode).json(result)
+})
+
+
   })
 
 

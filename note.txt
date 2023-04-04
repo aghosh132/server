@@ -120,3 +120,15 @@ steps
 
 
 
+Asychronus Method handling in js
+--------------------
+
+promise  -resolve   then()
+         -reject    catch()
+
+CORS (Cross origin resourse sharing)
+----------------------------------
+
+library used to integrate frontend with node 
+
+4200-3000
